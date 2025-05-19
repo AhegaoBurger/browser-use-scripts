@@ -43,14 +43,13 @@ config = BrowserContextConfig(
 browser = Browser(
     config=BrowserConfig(
         browser_binary_path='/usr/bin/google-chrome-stable',
-        extra_browser_args=['--user-data-dir=/home/artur/.config/google-chrome']
     )
 )
 
 # context = BrowserContext(browser=browser, config=config)
 
 llm = ChatOpenAI(
-    model="google/gemini-2.0-flash-exp",
+    model="google/gemini-2.5-pro-preview-03-25",
     base_url=requesty_base_url,
     api_key=SecretStr(requesty_api_key) if requesty_api_key else None,
 )
@@ -68,6 +67,6 @@ async def main():
     )
     result = await agent.run()
     print(result)
-    await browser.close()
+    # await browser.close()
 
 asyncio.run(main())
